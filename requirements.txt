@@ -1,0 +1,4 @@
+opencv-python-headless # For computer vision tasks, NO GUI dependencies?
+mediapipe  # For building multimodal ML pipelines
+tensorflow # For machine learning and deep learning
+numpy 
