@@ -6,16 +6,18 @@ RUN apt-get update && apt-get install -y \
     libgl1 \
     libglx-mesa0 \
     libglib2.0-0 \
-    # Needed for compiling native modules during npm install
-    build-essential \
     python3 \
+    make \
+    g++ \
+    build-essential \
+    pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 # Install JS dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps --loglevel verbose
 
 # Copy JSX code and assets
 COPY . .
@@ -24,6 +26,5 @@ COPY . .
 EXPOSE 8081
 
 # Start the bundler
-CMD ["npm", "start"]
-
+CMD ["npx", "expo", "start", "--tunnel"]  
 
