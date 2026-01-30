@@ -13,6 +13,7 @@ Install and edit conf follow guide (Install Expo Router ): [https://docs.expo.de
 
 
 
+
 **Docker (use this)**
 
 Deep Clean if old conf.
