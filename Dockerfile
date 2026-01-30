@@ -1,20 +1,29 @@
-FROM python:3.14-slim
+# 1. Use Node.js base
+FROM node:24-slim
 
+# Install system libs for TensorFlow.js / Expo / Graphics
 RUN apt-get update && apt-get install -y \
     libgl1 \
     libglx-mesa0 \
     libglib2.0-0 \
+    # Needed for compiling native modules during npm install
+    build-essential \
+    python3 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY requirements.txt .
+# Install JS dependencies
+COPY package*.json ./
+RUN npm install
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-
+# Copy JSX code and assets
 COPY . .
 
-CMD ["python", "app.py"]  # will modify based on your main application file
+# Port 8081 is the default for React Native Metro Bundler
+EXPOSE 8081
+
+# Start the bundler
+CMD ["npm", "start"]
 
 

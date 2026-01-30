@@ -1,0 +1,18 @@
+services:
+  asl-app:
+    build: .
+    container_name: asl_translator
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/app
+      # Prevent overwriting node_modules in the container
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
+    
+    # The --tunnel flag makes the IP address line unnecessary!
+    command: npx expo start --tunnel
