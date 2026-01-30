@@ -1,12 +1,12 @@
 # SignMe ASL Translator
 
 
-Set up:
+## Set up:
 
-npx create-expo-app@latest --template blank ./
+1. npx create-expo-app@latest --template blank ./
 
-Download Expo Go 
+2. Download Expo Go 
 
-npx expo start
+3. npx expo start
 
-Install and edit conf follow guide (Install Expo Router ): https://docs.expo.dev/router/installation/#modify-project-configuration
+4. Install and edit conf follow guide (Install Expo Router ): https://docs.expo.dev/router/installation/#modify-project-configuration
