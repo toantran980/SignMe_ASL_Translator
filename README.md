@@ -22,13 +22,18 @@ Deep Clean if old conf.
 docker compose down --rmi all --volumes --remove-orphansdocker compose up --build
 ```
 
+Close and clean docker instance:
+```
+docker-compose down -v
+```
+
 Start and Rebuild Fresh
 
 ```
 docker compose up --build
 ```
 
-* Note: without --build if no change
+* Note: remove --build if no change
 
 Accessing the App:
 
