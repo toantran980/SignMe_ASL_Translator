@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
-  // 1. State for camera facing (front/back)
+  // State for camera facing (front/back)
   const [facing, setFacing] = useState('back');
   
-  // 2. Hook for permissions
+  // Hook for permissions
   const [permission, requestPermission] = useCameraPermissions();
 
   // FIX: Handle the "non-iterable" and "null" errors
