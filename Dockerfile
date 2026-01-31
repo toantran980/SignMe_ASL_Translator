@@ -1,5 +1,5 @@
 # 1. Use Node.js base
-FROM node:24-slim
+FROM node:24
 
 # Install system libs for TensorFlow.js / Expo / Graphics
 RUN apt-get update && apt-get install -y \
@@ -18,7 +18,6 @@ WORKDIR /app
 # Install JS dependencies
 COPY package*.json ./
 RUN npm install --legacy-peer-deps --loglevel verbose
-RUN npx expo install expo-camera 
 
 # Copy JSX code and assets
 COPY . .
