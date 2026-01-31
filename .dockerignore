@@ -1,0 +1,14 @@
+# 1. Don't let Windows node_modules break the Linux build
+node_modules/
+
+# 2. No upload temporary Expo/Metro files
+.expo/
+.metro/
+web-build/
+
+# Use thesea to build, but don't store them inside
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+.env
