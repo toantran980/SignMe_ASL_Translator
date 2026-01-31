@@ -18,6 +18,7 @@ WORKDIR /app
 # Install JS dependencies
 COPY package*.json ./
 RUN npm install --legacy-peer-deps --loglevel verbose
+RUN npx expo install expo-camera 
 
 # Copy JSX code and assets
 COPY . .
