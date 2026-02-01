@@ -1,5 +1,5 @@
-# 1. Use Node.js base
-FROM node:24
+# 1. Use Node.js base, using Node.js 22 LTS for better stability with Expo
+FROM node:22
 
 # Install system libs for TensorFlow.js / Expo / Graphics
 RUN apt-get update && apt-get install -y \
@@ -24,6 +24,9 @@ COPY . .
 
 # Port 8081 is the default for React Native Metro Bundler
 EXPOSE 8081
+
+# Port for Expo's internal communication
+EXPOSE 19000
 
 # Start the bundler
 CMD ["npx", "expo", "start", "--tunnel"]  
