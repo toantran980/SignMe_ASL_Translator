@@ -24,7 +24,7 @@ docker compose down --rmi all --volumes --remove-orphansdocker compose up --buil
 
 Close and clean docker instance:
 ```
-docker-compose down -v
+docker compose down -v
 ```
 
 Start and Rebuild Fresh
