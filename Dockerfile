@@ -1,5 +1,6 @@
 # 1. Use Node.js base
 FROM node:24
+ENV NODE_ENV=development
 
 # Install system libs for TensorFlow.js / Expo / Graphics
 RUN apt-get update && apt-get install -y \
@@ -17,7 +18,10 @@ WORKDIR /app
 
 # Install JS dependencies
 COPY package*.json ./
-RUN npm install --legacy-peer-deps --loglevel verbose
+# Prefer a clean CI install, but fall back to a (more lenient) install if lockfile is out of sync
+RUN npm ci --legacy-peer-deps --loglevel=warn || npm install --legacy-peer-deps --loglevel=warn
+# Install ngrok (used by Expo for tunnel mode) globally so it doesn't prompt interactively
+RUN npm install -g @expo/ngrok --loglevel=warn
 
 # Copy JSX code and assets
 COPY . .

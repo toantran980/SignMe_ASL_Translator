@@ -15,4 +15,4 @@ services:
     tty: true
     
     # The --tunnel flag makes the IP address line unnecessary!
-    command: sh -c "yes | npx expo start --tunnel"
+    command: sh -c "npx expo start --tunnel"
