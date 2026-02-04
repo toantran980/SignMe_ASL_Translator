@@ -29,7 +29,7 @@ _Last updated: 2026-02-03_
 
 ---
 
-## High-priority next steps (short-term) ➡️
+## High-priority next steps (short-term) 
 
 - Mobile / Native
   - [ ] Finish iOS dev-client build on EAS: `eas build --profile development --platform ios` (requires Apple Developer access or allow EAS to manage credentials). **Owner:** Mobile
@@ -44,7 +44,7 @@ _Last updated: 2026-02-03_
 
 ---
 
-## Medium / Nice-to-have ➖
+## Nice-to-have 
 
 - [ ] Add `expo-system-ui` if you want `userInterfaceStyle` support: `expo install expo-system-ui`.
 - [ ] Add tests for model output & integration.
@@ -59,17 +59,10 @@ _Last updated: 2026-02-03_
 - Dev client (iOS): `expo prebuild` → `eas build --profile development --platform ios` → install dev-client → `expo start --dev-client`
 - Local Android run: `expo run:android` or `npx react-native run-android`
 
----
-
-## Notes / Cost ⚠️
-
-- iOS builds for device distribution require **Apple Developer Program ($99/yr)** or access via a team account. EAS has a free tier for builds but paid plans exist for increased usage.
-
----
 
 If you want, I can:
 
-- scaffold the **mock-landmark provider** in `CameraScreen.jsx` (fast) 🔧
-- or start the **iOS EAS build** and help with credential prompts (requires your decision on credential handling). 🧩
+- scaffold the **mock-landmark provider** in `CameraScreen.jsx` (fast)
+- or start the **iOS EAS build** and help with credential prompts (requires your decision on credential handling). 
 
-Which should I do next? ✨
+Which should I do next? 
