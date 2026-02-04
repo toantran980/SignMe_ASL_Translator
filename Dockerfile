@@ -1,4 +1,4 @@
-# 1. Use Node.js base, using Node.js 22 LTS for better stability with Expo
+# 1. Use Node.js base, using Node.js 24 LTS for better stability with Expo
 FROM node:24
 
 # Install system libs for TensorFlow.js / Expo / Graphics

@@ -1,40 +1,38 @@
 # SignMe ASL Translator
 
-Set up EXPO (without docker):
+## Setup Commands
 
-npx create-expo-app@latest --template blank ./
+### Initial Setup
+```bash
+# Install dependencies with legacy peer deps support
+npm install --legacy-peer-deps
 
-Download Expo Go
-
-npx expo start
-
-Install and edit conf follow guide (Install Expo Router ): [https://docs.expo.dev/router/installation/#modify-project-configuration](https://docs.expo.dev/router/installation/#modify-project-configuration)
-
-**Docker (use this)**
-
-Deep Clean if old conf.
-
-```
-docker-compose down --rmi all --volumes --remove-orphansdocker compose up --build
+# Clean reinstall if needed
+rm -rf node_modules package-lock.json
+npm install --legacy-peer-deps
 ```
 
-Close and clean docker instance:
+### Docker Setup (Recommended)
 
+**Deep Clean (if issues)**
+```bash
+docker-compose down --rmi all --volumes --remove-orphans
+docker compose up --build
 ```
+
+**Close and Clean**
+```bash
 docker-compose down -v
 ```
 
-Start and Rebuild Fresh
-
-```
+**Start Fresh**
+```bash
 docker-compose up --build
 ```
 
-* Note: remove --build if no change
-
-Accessing the App:
-
-* Scan the QR code
+**Accessing the App**
+- Scan the QR code from Expo tunnel
+- App runs on port 8081
 
 ---
 
