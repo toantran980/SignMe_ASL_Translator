@@ -52,7 +52,7 @@ _Last updated: 2026-02-03_
 
 ---
 
-## Dev / Run commands (cheat sheet) 🧾
+## Dev / Run commands (cheat sheet)
 
 - Docker: `docker compose up --build` (Metro on :8081)
 - Expo Go (UI): `expo start` → open with Expo Go (no native plugins)
