@@ -6,7 +6,7 @@ _Last updated: 2026-02-03_
 
 ## Quick status
 
-- Overall: **Frontend focused & dev-client ready (iOS)**. ✅
+- Overall: **Frontend focused & dev-client ready (Android)**. ✅
 - Docker: Metro runs via Docker. ✅
 - Native prebuild: `ios/` and `android/` generated. ✅
 
@@ -23,17 +23,17 @@ _Last updated: 2026-02-03_
 - Repo scaffolding
   - `app/screens/CameraScreen.jsx` (JS skeleton + mock-ready) ✅
   - `utils/tflite.js` (TFLite stub) ✅
-  - `docs/ios-mediapipe.md`, `docs/dev-client.md`, `README.md` updated ✅
+  - `docs/android-mediapipe.md`, `docs/dev-client.md`, `README.md` updated ✅
 - Docker
   - `Dockerfile` and `docker-compose.yml` fixed for reliability (bind & install). ✅
 
 ---
 
-## High-priority next steps (short-term) 
+## High-priority next steps (short-term)
 
 - Mobile / Native
-  - [ ] Finish iOS dev-client build on EAS: `eas build --profile development --platform ios` (requires Apple Developer access or allow EAS to manage credentials). **Owner:** Mobile
-  - [ ] Implement iOS frame-processor plugin (Swift/ObjC) to run MediaPipe Hand Landmarker and return flattened landmarks [x1,y1,z1,...]. **Owner:** Mobile
+  - [ ] Finish Android dev-client build on EAS: `eas build --profile development --platform android` (requires Google Play Console access or allow EAS to manage credentials). **Owner:** Mobile
+  - [ ] Implement Android frame-processor plugin (Kotlin/Java) to run MediaPipe Hand Landmarker and return flattened landmarks [x1,y1,z1,...]. **Owner:** Mobile
   - [ ] Integrate and test `.tflite` on device via `react-native-fast-tflite` or native TFLite wrapper. **Owner:** Mobile / ML
 - Python / ML
   - [ ] Collect landmark data using MediaPipe Python and save (CSV/NumPy). **Owner:** Python
@@ -44,7 +44,7 @@ _Last updated: 2026-02-03_
 
 ---
 
-## Nice-to-have 
+## Nice-to-have
 
 - [ ] Add `expo-system-ui` if you want `userInterfaceStyle` support: `expo install expo-system-ui`.
 - [ ] Add tests for model output & integration.
@@ -56,13 +56,7 @@ _Last updated: 2026-02-03_
 
 - Docker: `docker compose up --build` (Metro on :8081)
 - Expo Go (UI): `expo start` → open with Expo Go (no native plugins)
-- Dev client (iOS): `expo prebuild` → `eas build --profile development --platform ios` → install dev-client → `expo start --dev-client`
+- Dev client (Android): `expo prebuild` → `eas build --profile development --platform android` → install dev-client → `expo start --dev-client`
 - Local Android run: `expo run:android` or `npx react-native run-android`
-
-
-If you want, I can:
-
 - scaffold the **mock-landmark provider** in `CameraScreen.jsx` (fast)
-- or start the **iOS EAS build** and help with credential prompts (requires your decision on credential handling). 
-
-Which should I do next? 
+- or start the **Android EAS build** and help with credential prompts (requires your decision on credential handling).
