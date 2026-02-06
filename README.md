@@ -3,9 +3,13 @@
 ## Setup Commands
 
 ### Initial Setup
+
 ```bash
 # Install dependencies with legacy peer deps support
 npm install --legacy-peer-deps
+
+# Check and fix Expo package versions
+npx expo install --check
 
 # Clean reinstall if needed
 rm -rf node_modules package-lock.json
@@ -15,22 +19,26 @@ npm install --legacy-peer-deps
 ### Docker Setup (Recommended)
 
 **Deep Clean (if issues)**
+
 ```bash
 docker-compose down --rmi all --volumes --remove-orphans
 docker compose up --build
 ```
 
 **Close and Clean**
+
 ```bash
 docker-compose down -v
 ```
 
 **Start Fresh**
+
 ```bash
 docker-compose up --build
 ```
 
 **Accessing the App**
+
 - Scan the QR code from Expo tunnel
 - App runs on port 8081
 
@@ -47,7 +55,7 @@ docker-compose up --build
 
 > See `docs/dev-client.md` for more details and `docs/android-mediapipe.md` for Android MediaPipe integration notes.
 
-## Python — data collection & model (short steps) 
+## Python — data collection & model (short steps)
 
 - Create & activate venv (PowerShell): `python -m venv .venv` then `\.venv\Scripts\Activate.ps1`
 - Install libs: `pip install mediapipe opencv-python numpy pandas tensorflow scikit-learn`
@@ -58,4 +66,5 @@ docker-compose up --build
 
 - **Docker (local dev)**: `docker compose up --build` — Metro runs on port 8081 (tunnel mode used by default).
 - **Expo Go (UI-only)**: `expo start` → open with Expo Go (fast iteration; native frame-processor/TFLite won't run).
-- **Dev Client (native testing)**: `expo prebuild` → `eas build --profile development --platform ios` → install built dev-client on device → `expo start --dev-client`.
+- **Dev Client (physical device)**: `npx expo prebuild` → `eas build --profile development --platform android` → install built APK on device → `expo start --dev-client`.
+- **Dev Client (emulator)**: `npx expo prebuild` → `expo run:android` (builds locally and launches emulator automatically).
