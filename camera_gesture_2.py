@@ -21,7 +21,7 @@ class GestureDataCollector:
         (0, 13), (13, 14), (14, 15), (15, 16),  # Ring
         (0, 17), (17, 18), (18, 19), (19, 20),  # Pinky
         (5, 9), (9, 13), (13, 17)  # Palm
-    ]
+    ] 
     
     def __init__(self):
         """Initialize MediaPipe hand detector."""
@@ -111,7 +111,7 @@ class GestureDataCollector:
             
             cv2.putText(frame, str(int(fps))+" FPS", (5, 70), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
             
-            cv2.putText(frame, "Press Q to exit", (10, 250), 
+            cv2.putText(frame, "Press Q to exit", (10, frame.shape[0] - 10), 
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
             
             cv2.imshow('Hand Gesture Test', frame)
