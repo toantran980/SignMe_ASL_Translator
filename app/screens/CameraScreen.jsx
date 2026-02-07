@@ -42,7 +42,7 @@ export default function CameraScreen(){
     <View style={styles.container}>
       {/* Placeholder for camera view — will be replaced with Vision Camera when native is ready */}
       <View style={styles.cameraPlaceholder}>
-        <Text style={styles.placeholderText}>📷 Camera (mock)</Text>
+        <Text style={styles.placeholderText}> Camera (mock)</Text>
       </View>
       
       {/* Prediction display */}
