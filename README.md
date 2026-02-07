@@ -1,70 +1,89 @@
 # SignMe ASL Translator
 
-## Setup Commands
+Real-time ASL gesture recognition mobile app using MediaPipe hand tracking and TensorFlow Lite.
 
-### Initial Setup
+## Quick Start
+
+### 1. Install Dependencies
 
 ```bash
-# Install dependencies with legacy peer deps support
 npm install --legacy-peer-deps
-
-# Check and fix Expo package versions
 npx expo install --check
-
-# Clean reinstall if needed
-rm -rf node_modules package-lock.json
-npm install --legacy-peer-deps
 ```
 
-### Docker Setup (Recommended)
+### 2. Run Metro (Docker or Local)
 
-**Deep Clean (if issues)**
+**Docker (Recommended):**
 
 ```bash
-docker-compose down --rmi all --volumes --remove-orphans
 docker compose up --build
 ```
 
-**Close and Clean**
+**Clean up Docker:**
 
-```bash
+```docker-compose
 docker-compose down -v
 ```
 
-**Start Fresh**
+**Local:**
 
 ```bash
-docker-compose up --build
+npm start
 ```
 
-**Accessing the App**
+### 3. ML Pipeline (Python)
 
-- Scan the QR code from Expo tunnel
-- App runs on port 8081
+See [ml/README.md](ml/README.md) for complete ML workflow.
 
----
+```bash
+cd ml
+pip install -r requirements.txt
+python collect_data.py    # Collect gesture data
+python train_model.py     # Train classifier
+python convert_to_tflite.py  # Export .tflite
+```
 
-## Dev client (EAS) — Android (short steps) 🔧
+## Development Modes
 
-- Install EAS CLI and login: `npm install -g eas-cli` then `eas login`
-- Add `eas.json` with a `development` profile and set `developmentClient: true`
-- Install dev client: `expo install expo-dev-client`
-- Add native deps (example): `yarn add react-native-vision-camera react-native-fast-tflite react-native-reanimated react-native-permissions`
-- Prebuild & build dev client (Android): `expo prebuild` then `eas build --profile development --platform android`
-- Start with the dev client: `expo start --dev-client` and open the built app on your Android device
+**Expo Go (UI Testing):**
 
-> See `docs/dev-client.md` for more details and `docs/android-mediapipe.md` for Android MediaPipe integration notes.
+```bash
+npm start
+# Scan QR with Expo Go app
+```
 
-## Python — data collection & model (short steps)
+**Dev Client (Full Features):**
 
-- Create & activate venv (PowerShell): `python -m venv .venv` then `\.venv\Scripts\Activate.ps1`
-- Install libs: `pip install mediapipe opencv-python numpy pandas tensorflow scikit-learn`
-- Use `scripts/collect_landmarks.py` to record per-frame landmarks (CSV/NumPy)
-- Train in TensorFlow/Keras and export a quantized `.tflite` for on-device use
+```bash
+# Install EAS CLI
+npm install -g eas-cli
+eas login
 
-## Running (quick)
+# Build dev client for Android
+expo prebuild
+eas build --profile development --platform android
 
-- **Docker (local dev)**: `docker compose up --build` — Metro runs on port 8081 (tunnel mode used by default).
-- **Expo Go (UI-only)**: `expo start` → open with Expo Go (fast iteration; native frame-processor/TFLite won't run).
-- **Dev Client (physical device)**: `npx expo prebuild` → `eas build --profile development --platform android` → install built APK on device → `expo start --dev-client`.
-- **Dev Client (emulator)**: `npx expo prebuild` → `expo run:android` (builds locally and launches emulator automatically).
+# Or local emulator
+expo run:android
+
+# Start
+expo start --dev-client
+```
+
+## Android MediaPipe Integration
+
+See [docs/android-mediapipe.md](docs/android-mediapipe.md) for native frame processor setup.
+
+**Key Steps:**
+
+1. Add MediaPipe dependency to `android/app/build.gradle`
+2. Implement Kotlin frame processor plugin for Vision Camera
+3. Extract hand landmarks (21×3 = 63 features)
+4. Pass to TFLite model for gesture classification
+
+## Architecture
+
+- **Mobile App:** React Native + Expo (standalone, runs on-device)
+- **ML Pipeline:** Python scripts (offline training only)
+- **Model:** TensorFlow Lite (.tflite file embedded in app)
+- **Hand Tracking:** MediaPipe Hands (native Android plugin)

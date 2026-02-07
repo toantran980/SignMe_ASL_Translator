@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native'
-import runTFLiteModel from '../../utils/tflite'
+import runTFLiteModel from '../utils/tflite'
 
 // Mock landmarks provider for development (simulates camera + MediaPipe output)  ---> must be modify to fit real implementation
 // When native frame-processor is ready, replace this with real Vision Camera integration
@@ -12,8 +12,8 @@ export default function CameraScreen(){
   // Simulate receiving landmarks from MediaPipe
   const simulateLandmarks = async () => {
     // Generate random landmarks 
-    const mockLandmarks = new Float32Array(63)
-    for (let i = 0; i < 63; i++) {
+    const mockLandmarks = new Float32Array(63) // Assuming 21 keypoints with (x, y, z) = 63 values
+    for (let i = 0; i < mockLandmarks.length; i++) {
       mockLandmarks[i] = Math.random()
     }
     
