@@ -26,11 +26,10 @@ class GestureDataCollector:
     def __init__(self):
         """Initialize MediaPipe hand detector."""
         # Get the model path
-        model_path = os.path.join(os.path.dirname(__file__), 'hand_landmarker.task')
-
+        #model_path = os.path.join(os.path.dirname(__file__), 'hand_landmarker.task')
 
         # Create hand landmarker options
-        base_options = python.BaseOptions(model_asset_path = model_path)
+        base_options = python.BaseOptions(model_asset_path = 'hand_landmarker.task')
         options = vision.HandLandmarkerOptions(
             base_options=base_options,
             num_hands = 2,
