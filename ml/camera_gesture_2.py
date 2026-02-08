@@ -29,7 +29,7 @@ class GestureDataCollector:
         #model_path = os.path.join(os.path.dirname(__file__), 'hand_landmarker.task')
 
         # Create hand landmarker options
-        base_options = python.BaseOptions(model_asset_path = 'ml/hand_landmarker.task')
+        base_options = python.BaseOptions(model_asset_path = 'hand_landmarker.task')
         options = vision.HandLandmarkerOptions(
             base_options=base_options,
             num_hands = 2,
