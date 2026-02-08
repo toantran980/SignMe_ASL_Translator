@@ -1,0 +1,17 @@
+*.pyc
+__pycache__/
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+*.pkl
+*.h5
+*.tflite
+data/
+models/
+checkpoints/
+venv/
+.venv/
+.env
+.DS_Store
