@@ -8,6 +8,7 @@ import cv2
 import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+from mediapipe.tasks.python.vision import FaceLandmarkerOptions, FaceLandmarker
 import os
 import time
 
@@ -37,7 +38,20 @@ class GestureDataCollector:
             min_hand_presence_confidence = 0.5,
             min_tracking_confidence = 0.5
         )
-        
+
+        # Create face landmarker options
+        face_base_options = python.BaseOptions(model_asset_path='face_landmarker.task')
+        face_options = vision.FaceLandmarkerOptions(
+            base_options=face_base_options,
+            num_faces=1,
+            min_face_detection_confidence=0.5,
+            min_face_presence_confidence=0.5,
+            min_tracking_confidence=0.5 
+        )
+
+        # Create the face landmarker
+        self.face_detector = vision.FaceLandmarker.create_from_options(face_options)
+
         # Create the hand landmarker
         self.detector = vision.HandLandmarker.create_from_options(options)
         self.frame_timestamp_ms = 0
@@ -62,6 +76,15 @@ class GestureDataCollector:
             x, y = int(landmark.x * w), int(landmark.y * h)
             cv2.circle(frame, (x, y), 5, (255, 0, 0), -1)
             cv2.circle(frame, (x, y), 7, (0, 255, 0), 2)
+
+    def draw_face_landmarks(self, frame, face_landmarks):
+        """Draw face landmarks on the frame."""
+        h, w, _ = frame.shape # height, width, channels
+        
+        for landmark in face_landmarks:
+            x, y = int(landmark.x * w), int(landmark.y * h)
+            cv2.circle(frame, (x, y), 2, (0, 255, 255), -1)
+        
 
     def test_camera(self):
         """Test camera and gesture data collection."""
@@ -97,6 +120,12 @@ class GestureDataCollector:
                 num_hands = len(results.hand_landmarks)
                 for hand_landmarks in results.hand_landmarks:
                     self.draw_landmarks(frame, hand_landmarks)
+            
+            # Draw face landmarks
+            face_results = self.face_detector.detect(mp_image)
+            if face_results.face_landmarks:
+                for face_landmarks in face_results.face_landmarks:
+                    self.draw_face_landmarks(frame, face_landmarks)
             
             # Calculate FPS
             currentTime = time.time()
